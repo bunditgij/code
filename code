@@ -1,0 +1,83 @@
+import 'package:flutter/material.dart';
+
+class Helpscreen extends StatefulWidget {
+  @override
+  _HlpescreenState createState() => _HlpescreenState();
+}
+
+class _HlpescreenState extends State<Helpscreen> {
+  bool showMoreText = false;
+
+  void toggleShowMoreText() {
+    setState(() {
+      showMoreText = !showMoreText;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Color(0xFF790E9F),
+        title: Text('ช่วยเหลือ'),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                CircleAvatar(
+                  radius: 60,
+                  backgroundImage: AssetImage('images/Python.png'), // Replace with your image path
+                ),
+                CircleAvatar(
+                  radius: 60,
+                  backgroundImage: AssetImage('images/Flutter.png'), // Replace with your image path
+                ),
+              ],
+            ),
+            SizedBox(height: 16),
+            Text(
+              'Text below the images',
+              style: TextStyle(fontSize: 20),
+              textAlign: TextAlign.center,
+            ),
+            SizedBox(height: 16),
+            ElevatedButton.icon(
+              onPressed: toggleShowMoreText,
+              icon: Icon(showMoreText ? Icons.arrow_upward : Icons.arrow_downward),
+              label: Text(
+                showMoreText ? 'Show Less' : 'Show More',
+                style: TextStyle(color: Colors.white),
+              ),
+            ),
+            if (showMoreText) SizedBox(height: 16),
+            if (showMoreText)
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Name: Bundit Chamekathin',
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(height: 8),
+                  Text(
+                    'Phone number: 0971623159',
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(height: 8),
+                  Text(
+                    'Email: Bundit@gamil.com',
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                  ),
+                ],
+              ),
+          ],
+        ),
+      ),
+    );
+  }
+}
